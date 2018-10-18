@@ -27,12 +27,17 @@ io.on('connection', (socket) => {
 
 socket.on('createMessage', (message)=>{
   console.log('createMessage', message)
+  io.emit('newMessage', {
+    from:message.from,
+    text:message.text
+  
+  })
 })
 
-socket.emit('newMessage', {
-  from:"John",
-  text:"test"
-})
+// socket.emit('newMessage', {
+//   from:"John",
+//   text:"test"
+// })
   socket.on('disconnect', () => {
     console.log('User was disconnected');
   });//close the window localhost 3000
